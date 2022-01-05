@@ -1,0 +1,19 @@
+.nav-bar {
+    background-color: yellow;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-bar a {
+    text-decoration: none;
+    color: black;
+    padding: 14px 16px;
+}
+
+.nav-bar a:hover{
+    background-color: rgb(116, 116, 116);
+}
+
+.active {
+    background-color: darkgray;
+}
