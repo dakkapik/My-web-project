@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic tac toe</title>
+    
     <style>
         .row div{
             width: 50px;
@@ -19,8 +20,8 @@
         }
     </style>
 </head>
-<body>
-    <div class="row">
+<body id="body">
+    <!-- <div class="row">
         <div id="0-0">1</div>
         <div id="0-1">2</div>
         <div id="0-2">3</div>
@@ -34,15 +35,35 @@
         <div id="2-0">7</div>
         <div id="2-1">8</div>
         <div id="2-2">9</div>
-    </div>
+    </div> -->
 </body>
-<script>
-    const cell00 = document.getElementById("0-0")
+<script defer>
+    const body = document.getElementById("body")
+    let turn = 0
 
-    cell00.addEventListener('click', (e) => {
-        cell00.innerHTML = "X"
-        console.log("cell 0-0 was clicked")
-    })
+    for(let i = 0; i < 3; i++){
+        const row = document.createElement("div")
+        row.className = "row"
+        for(let o = 0; o < 3; o++){
+            const cell = document.createElement("div")
+            cell.id = `${i}-${o}`
+            row.append(cell)
+        }
+        body.append(row)
+    }
+
+    // cell00.addEventListener('click', (e) => {
+        
+
+    //     if(turn % 2 === 0) {
+    //         cell00.innerHTML = "X"
+    //     } else {
+    //         cell00.innerHTML = "O"
+    //     }
+
+    //     console.log("cell 0-0 was clicked")
+    //     turn ++
+    // })
 
 </script>
 </html>
