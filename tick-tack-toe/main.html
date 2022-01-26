@@ -21,21 +21,7 @@
     </style>
 </head>
 <body id="body">
-    <!-- <div class="row">
-        <div id="0-0">1</div>
-        <div id="0-1">2</div>
-        <div id="0-2">3</div>
-    </div>
-    <div class="row">
-        <div id="1-0">4</div>
-        <div id="1-1">5</div>
-        <div id="1-2">6</div>
-    </div>
-    <div class="row">
-        <div id="2-0">7</div>
-        <div id="2-1">8</div>
-        <div id="2-2">9</div>
-    </div> -->
+
 </body>
 <script defer>
     const body = document.getElementById("body")
@@ -47,23 +33,26 @@
         for(let o = 0; o < 3; o++){
             const cell = document.createElement("div")
             cell.id = `${i}-${o}`
+            cell.addEventListener("click", markSquare)
             row.append(cell)
         }
         body.append(row)
     }
 
-    // cell00.addEventListener('click', (e) => {
-        
+    function markSquare (e) {
+        console.log(e)
+        const cell = document.getElementById(e.path[0].id)
+        // cell.style.backgroundColor = "red"
 
-    //     if(turn % 2 === 0) {
-    //         cell00.innerHTML = "X"
-    //     } else {
-    //         cell00.innerHTML = "O"
-    //     }
+        if(turn % 2 === 0){
+            cell.innerHTML = "X"
+        }else {
+            cell.innerHTML = "O"
+        }
 
-    //     console.log("cell 0-0 was clicked")
-    //     turn ++
-    // })
+        turn ++
+
+    }
 
 </script>
 </html>
