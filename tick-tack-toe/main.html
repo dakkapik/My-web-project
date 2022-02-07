@@ -25,6 +25,8 @@
 </body>
 <script defer>
     const body = document.getElementById("body")
+    const matrix = [[0,0,0],[0,0,0],[0,0,0]]
+    console.log(matrix[0][0])
     let turn = 0
 
     for(let i = 0; i < 3; i++){
@@ -40,18 +42,31 @@
     }
 
     function markSquare (e) {
-        console.log(e)
         const cell = document.getElementById(e.path[0].id)
         // cell.style.backgroundColor = "red"
+        const [y, x] = cell.id.split("-")
 
         if(turn % 2 === 0){
             cell.innerHTML = "X"
+            matrix[y][x] = 1
         }else {
             cell.innerHTML = "O"
+            matrix[y][x] = -1
         }
 
+        // console.log(matrix)
+        checkWinner(matrix)
         turn ++
+    }
 
+    function checkWinner(matrix){
+                //Y  X
+        if(matrix[0][0] + matrix[0][1] + matrix[0][2] === 3){
+            console.log("player 1 Won")
+        }
+        if(matrix[0][0] + matrix[0][1] + matrix[0][2] === -3){
+            console.log("player 2 Won")
+        }
     }
 
 </script>
