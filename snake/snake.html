@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake</title>
+    <style>
+        #body > div > div{
+            width: 20px;
+            height: 20px;
+            background-color: lawngreen;
+            border: solid 1px;
+        }
+        #body > div {
+            display: flex;
+        }
+    </style>
+</head>
+<body id="body"></body>
+<script>
+    const body = document.getElementById("body");
+    const length = 25;
+    const height = 20;
+
+    for(let y = 0; y < height; y++){
+        const row = document.createElement("div");
+        for(let x = 0; x < length ; x++){
+            const cell = document.createElement("div");
+            cell.id = `${x}-${y}`
+            row.append(cell)
+        }
+        body.append(row)
+    }
+
+    document.addEventListener("keydown",(e) => {
+        switch(e.key){
+            case 'w':
+                console.log("up");
+            break;
+            case 'd':
+                console.log("right")
+            break;
+        }
+    })
+
+
+</script>
+</html>

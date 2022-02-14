@@ -59,12 +59,21 @@
         turn ++
     }
 
-    function checkWinner(matrix){
-                //Y  X
-        if(matrix[0][0] + matrix[0][1] + matrix[0][2] === 3){
+    function checkWinner(matrix){      
+        let result
+
+        result = matrix[0][0] + matrix[0][1] + matrix[0][2]
+        if(result === 3){
             console.log("player 1 Won")
+        }else if(result === -3){
+            console.log("player 2 Won")
         }
-        if(matrix[0][0] + matrix[0][1] + matrix[0][2] === -3){
+
+        result = matrix[1][0] + matrix[1][1] + matrix[2
+        ][2]
+        if(result === 3){
+            console.log("player 1 Won")
+        }else if(result === -3){
             console.log("player 2 Won")
         }
     }
