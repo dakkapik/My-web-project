@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic tac toe</title>
+    
+    <style>
+        .row div{
+            width: 50px;
+            height: 50px;
+            /* background-color: red; */
+            border-style: solid;
+            border-color:black;
+        }
+
+        .row{
+            float: right;
+        }
+    </style>
+</head>
+<body id="body">
+
+</body>
+<script defer>
+    const body = document.getElementById("body")
+    const matrix = [[0,0,0],[0,0,0],[0,0,0]]
+    console.log(matrix[0][0])
+    let turn = 0
+
+    for(let i = 0; i < 3; i++){
+        const row = document.createElement("div")
+        row.className = "row"
+        for(let o = 0; o < 3; o++){
+            const cell = document.createElement("div")
+            cell.id = `${i}-${o}`
+            cell.addEventListener("click", markSquare)
+            row.append(cell)
+        }
+        body.append(row)
+    }
+
+    function markSquare (e) {
+        const cell = document.getElementById(e.path[0].id)
+        // cell.style.backgroundColor = "red"
+        const [y, x] = cell.id.split("-")
+
+        if(turn % 2 === 0){
+            cell.innerHTML = "X"
+            matrix[y][x] = 1
+        }else {
+            cell.innerHTML = "O"
+            matrix[y][x] = -1
+        }
+
+        // console.log(matrix)
+        checkWinner(matrix)
+        turn ++
+    }
+
+    function checkWinner(matrix){      
+        let result
+
+        result = matrix[0][0] + matrix[0][1] + matrix[0][2]
+        if(result === 3){
+            console.log("player 1 Won")
+        }else if(result === -3){
+            console.log("player 2 Won")
+        }
+
+        result = matrix[1][0] + matrix[1][1] + matrix[2
+        ][2]
+        if(result === 3){
+            console.log("player 1 Won")
+        }else if(result === -3){
+            console.log("player 2 Won")
+        }
+    }
+
+</script>
+</html>

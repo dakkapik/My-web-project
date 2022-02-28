@@ -24,18 +24,15 @@
 <body id="body"></body>
 <script>
     const body = document.getElementById("body");
-    const width = 25;
+    const length = 25;
     const height = 20;
     const speed = 100;
-    const snakeInitialLength = 5;
-    let score = 0;
 
-    let xPos = Math.trunc(width / 2)
+    let xPos = Math.trunc(length / 2)
     let yPos = Math.trunc(height / 2)
     let direction = "right"
-    let snakeBody = [{x: xPos, y: yPos}]
-    console.log(snakeBody)
-    const interval = setInterval(draw, speed)
+
+    setInterval(draw, speed)
 
     document.addEventListener("keydown",(e) => {
         switch(e.key){
@@ -59,26 +56,12 @@
         removeAllChildNodes(body)
         for(let y = 0; y < height; y++){
             const row = document.createElement("div");
-            for(let x = 0; x < width ; x++){
+            for(let x = 0; x < length ; x++){
                 const cell = document.createElement("div");
-                cell.id = `${x}-${y}`
                 row.append(cell)
             }
             body.append(row)
         }
-
-        if(xPos < -1 || xPos > width || yPos < -1 || yPos > height){
-            console.log("death")
-            clearInterval(interval)
-        }
-        
-        snakeBody.push({x: xPos, y:yPos})
-
-        for(let i = snakeBody.length - 1; i > snakeBody.length - (snakeInitialLength + score) && i > 0; i--){
-            document.getElementById(`${snakeBody[i].x}-${snakeBody[i].y}`).style.backgroundColor = "red"
-        }
-        
-        
     }
 
     function changePosition(){
