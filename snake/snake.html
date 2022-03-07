@@ -12,30 +12,50 @@
             height: 20px;
             background-color: lawngreen;
             border: solid 1px;
-            border-radius: 50%;
+            /* border-radius: 50%; */
         }
 
         #body > div {
             display: flex;
         }
+
+    
     </style>
 
 </head>
-<body id="body"></body>
+
+<body>
+    <button class="start-button" id="start-button">START</button>
+    <div id="body"></div>
+</body>
+
 <script>
     const body = document.getElementById("body");
+    const startButton = document.getElementById("start-button")
+    let started = false
+
     const width = 25;
     const height = 20;
     const speed = 100;
-    const snakeInitialLength = 5;
-    let score = 0;
-
+    
     let xPos = Math.trunc(width / 2)
     let yPos = Math.trunc(height / 2)
     let direction = "right"
+    
+    const snakeInitialLength = 5;
+    let score = 0;
     let snakeBody = [{x: xPos, y: yPos}]
-    console.log(snakeBody)
-    const interval = setInterval(draw, speed)
+
+    let interval;
+
+    draw();
+    startButton.addEventListener("click", ()=>{
+        if(!started){
+            interval = setInterval(draw, speed)
+            started = true
+        }
+       
+    })
 
     document.addEventListener("keydown",(e) => {
         switch(e.key){
@@ -55,18 +75,21 @@
     })
 
     function draw(){
+        let alternateColor = true;
         changePosition()
         removeAllChildNodes(body)
         for(let y = 0; y < height; y++){
             const row = document.createElement("div");
             for(let x = 0; x < width ; x++){
                 const cell = document.createElement("div");
+                if(alternateColor) cell.style.backgroundColor = "#00cc00"
+                alternateColor = !alternateColor
                 cell.id = `${x}-${y}`
                 row.append(cell)
             }
             body.append(row)
         }
-
+        
         if(xPos < -1 || xPos > width || yPos < -1 || yPos > height){
             console.log("death")
             clearInterval(interval)
@@ -74,10 +97,16 @@
         
         snakeBody.push({x: xPos, y:yPos})
 
+        const snake = []
         for(let i = snakeBody.length - 1; i > snakeBody.length - (snakeInitialLength + score) && i > 0; i--){
-            document.getElementById(`${snakeBody[i].x}-${snakeBody[i].y}`).style.backgroundColor = "red"
+            snake.push(snakeBody[i])
         }
-        
+
+        snake.forEach(part => {
+            const snake = document.getElementById(`${part.x}-${part.y}`)
+            snake.style.backgroundColor = "orange"
+            snake.style.borderRadius = "50%"
+        })
         
     }
 
